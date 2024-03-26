@@ -132,6 +132,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             selectedDistrict = districtSpinner.getSelectedItem().toString();
                         }
 
+
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
                         }
@@ -284,6 +285,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                          progressDialog.dismiss();
                          UserClass userClass = new UserClass(username,bDate,divPlusDis,email,password);
 
+
                          FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                  .setValue(userClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                                      @Override
@@ -329,7 +331,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private void setDate(){
         DatePicker datePicker = new DatePicker(this);
         int currentDay = datePicker.getDayOfMonth();
-        int currentMonth = (datePicker.getMonth()+1);
+        int currentMonth = (datePicker.getMonth());
         int currentYear = datePicker.getYear();
         datePickerDialog = new DatePickerDialog(this,
 
@@ -340,6 +342,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                         edt_date.setText(dayOfMonth+"/"+(month+1)+"/"+year);
                     }
                 },currentYear, currentMonth, currentDay);
+
+
 
         datePickerDialog.show();
     }

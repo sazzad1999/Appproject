@@ -13,6 +13,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -92,13 +94,33 @@ public class HomeActivity extends AppCompatActivity {
         detect = findViewById(R.id.goToDetect);
         map = findViewById(R.id.goToMap);
 
+        //Gsap Animation
+        webView = findViewById(R.id.webView2);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("file:///android_asset/gsap/index.html");
+
+
+        //SaSS
+        webViewSass = findViewById(R.id.webView);
+        //webViewSass.getSettings().setJavaScriptEnabled(true);
+        webViewSass.loadUrl("file:///android_asset/sass/index.html");
+
+        review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeActivity.this, ReviewDisplay.class);
+                startActivity(i);
+            }
+        });
+
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ii = new Intent(HomeActivity.this,MapActivity.class);
-                startActivity(ii);
+                Intent i = new Intent(HomeActivity.this, MapActivity.class);
+                startActivity(i);
             }
         });
+
 
 
         drawerLayout = findViewById(R.id.drawerLayoutId);
@@ -159,6 +181,54 @@ public class HomeActivity extends AppCompatActivity {
                 super.onReady(youTubePlayer);
             }
         });
+
+
+
+        //Remainder for profile upload
+        userProfileReference = FirebaseDatabase.getInstance().getReference("Userprofile");
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        userId = firebaseUser.getUid();
+
+        userProfileReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.hasChild(userId)){
+
+                    //AlertDialog for profile upload
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                            builder.setTitle(" ");
+                            builder.setMessage("Upload your profile picture");
+                            builder.setCancelable(false);
+                            builder.setPositiveButton("Upload", (DialogInterface.OnClickListener) (dialog, which) -> {
+                                Intent intent = new Intent(HomeActivity.this,ProfileUpload.class);
+                                startActivity(intent);
+
+                            });
+
+                            builder.setNegativeButton("Later", (DialogInterface.OnClickListener) (dialog, which) -> {
+                                dialog.cancel();
+                            });
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+
+                        }
+                    },5000);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
     }

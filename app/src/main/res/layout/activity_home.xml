@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_height="300dp"
+                    android:layout_height="600dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/linearlayout1"
                     app:layout_constraintTop_toBottomOf="@+id/linearlayout1"
@@ -62,6 +62,14 @@
                         android:layout_width="500dp"
                         android:layout_height="250dp">
                     </WebView>
+
+                    <WebView
+                        android:id="@+id/webView2"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="500dp"
+                        android:layout_height="250dp">
+                    </WebView>
+
 
 
 
@@ -297,6 +305,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
     </include>
+
 
     <com.google.android.material.navigation.NavigationView
         android:layout_gravity="start"

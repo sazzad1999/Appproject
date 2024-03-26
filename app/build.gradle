@@ -49,4 +49,8 @@ dependencies {
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.26'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 
+    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
+    implementation  'de.hdodenhof:circleimageview:3.1.0'
+
+
 }

@@ -10,6 +10,7 @@ package com.example.myapplicationddd;
         public String bDate;
         public String divPlusDis;
         public String email;
+
         public String password;
 
         public UserClass(String username, String bDate, String divPlusDis, String email, String password) {

@@ -17,7 +17,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 
-import com.example.myapplicationddd.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -46,6 +45,7 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         isLocationEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)

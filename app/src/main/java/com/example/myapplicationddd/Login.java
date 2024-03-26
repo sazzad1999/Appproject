@@ -99,6 +99,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         } else {
                             user.sendEmailVerification();
                             mAuth.signOut();
+
                             Toast.makeText(Login.this, "Email is not verified", Toast.LENGTH_SHORT).show();
                         }*/
                     } else {
